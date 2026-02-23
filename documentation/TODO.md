@@ -1,44 +1,49 @@
 # Portfolio — Actionable Tasks
 
-## Immediate (This Week)
-- [ ] Design portfolio layout (sketch or Figma wireframe: Hero, About, Projects, Skills, Contact)
-- [ ] Set up basic page structure with section scaffolding
-- [ ] Implement responsive navigation bar
-- [ ] Add dark mode toggle (next-themes already in stack)
+## Completed
+- [x] Next.js project setup (TypeScript, Tailwind, ESLint)
+- [x] Git flow configured (master/develop branches), connected to GitHub
+- [x] Hero section (Framer Motion animations, name, tagline, CTA buttons)
+- [x] About section (bio copy, stats pills, avatar placeholder)
+- [x] Projects section (3 cards: BeautyByAmy, Charles, ClutchCall — layout, animations, tech tags)
+- [x] Skills section (scrolling carousel + wireframe globe)
+- [x] Contact section (email, GitHub, LinkedIn links, footer)
+- [x] Guestbook section (UI complete with form + masonry grid)
+- [x] Chat widget component
+- [x] Custom cursor component
+- [x] Framer Motion chosen and implemented
+- [x] Vercel Analytics integrated
+- [x] SEO title + description set in layout.tsx
+- [x] Custom fonts (Space Grotesk, JetBrains Mono, Sora)
+- [x] Favicon/icons configured
 
-## Short-Term (Next 2 Weeks)
-- [ ] Build project card component (title, description, tech stack chips, GitHub + live links)
-- [ ] Add project data for BeautyByAmy, ClutchCall, Pick It Up
-- [ ] Implement hero section (name, tagline, CTA buttons)
-- [ ] Implement about section (bio pulling from resume + Marine Corps background)
-- [ ] Implement skills section (organized by category: Frontend, Backend, ML, etc.)
-- [ ] Add contact section (GitHub, LinkedIn, email links)
-- [ ] Write bio copy (concise, resume-aligned, 2-3 paragraphs)
-- [ ] Write project descriptions (2-3 sentences each)
+## Immediate (Next Session)
+- [ ] Add actual LinkedIn profile URL (currently placeholder `https://linkedin.com`)
+- [ ] Add project screenshots to `/public/images/` (beautybyamy.jpg, charles.jpg, clutchcall.jpg)
+- [ ] Add resume PDF to `/public/` and wire up download button in hero or contact section
+- [ ] Build responsive navigation bar (sticky, smooth scroll to sections)
 
-## Medium-Term (Next Month)
-- [ ] Decide on animation library (Framer Motion vs CSS animations)
-- [ ] Add smooth scroll and entrance animations
-- [ ] Take/gather project screenshots (use browser DevTools for clean captures)
-- [ ] Implement SEO metadata (title, description, og:image, sitemap)
-- [ ] Add resume PDF download link
-- [ ] Add Google Analytics or Plausible tracking
+## Short-Term
+- [ ] Persist guestbook messages (currently in-memory, resets on refresh) — needs API route + DB or a service like PlanetScale / Supabase
+- [ ] Add dark mode toggle (currently hardcoded to dark in layout.tsx)
+- [ ] Add Marine Corps background to About bio
+- [ ] Add og:image for social sharing previews
+- [ ] Add sitemap.xml and robots.txt
+
+## Pre-Deployment
 - [ ] Test responsive design on real mobile/tablet devices
-- [ ] Deploy to Vercel or Netlify staging
-
-## Before Launch
-- [ ] Performance optimization (image compression, code splitting)
-- [ ] Accessibility audit (WCAG 2.1 AA, semantic HTML, ARIA labels)
-- [ ] Cross-browser testing (Chrome, Firefox, Safari, Edge)
+- [ ] Accessibility audit (WCAG 2.1 AA — semantic HTML, ARIA labels)
 - [ ] Lighthouse score > 90 (performance, accessibility, SEO)
-- [ ] Final content review and copy editing
-- [ ] Production deployment
+- [ ] Cross-browser testing (Chrome, Firefox, Safari, Edge)
+- [ ] Zero console errors/warnings
+
+## Deployment
+- [ ] Deploy to Vercel
 - [ ] Custom domain setup (justinnguyen.dev or similar)
 - [ ] SSL and DNS configuration
-- [ ] Zero console errors/warnings check
+- [ ] Verify Vercel Analytics is tracking after deploy
 
 ## Open Decisions
 - [ ] Custom domain name (justinnguyen.dev, jnguyen.dev, other?)
-- [ ] Analytics platform (Google Analytics vs Plausible vs Simple Analytics)
+- [ ] Guestbook persistence solution (Supabase, PlanetScale, Upstash, or remove feature?)
 - [ ] Include blog section in MVP or defer to v2?
-- [ ] Animation library choice
