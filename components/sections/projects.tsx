@@ -23,13 +23,13 @@ const projects = [
     image: "/images/charles.jpg",
   },
   {
-    name: "Portfolio",
+    name: "ClutchCall",
     description:
-      "This site. A personal portfolio built with Next.js, Framer Motion, and thoughtful design details throughout.",
-    tags: ["Next.js", "Framer Motion", "Tailwind", "TypeScript"],
+      "A full-stack sports analytics web app using AI/ML to surface the best players and teams across NBA, NFL, and soccer using real-time statistics.",
+    tags: ["Python", "Flask", "React", "Next.js"],
     year: "2025",
-    link: "#",
-    image: "/images/portfolio.jpg",
+    link: "https://github.com/JustinSu11/clutch-call",
+    image: "/images/clutchcall.jpg",
   },
 ];
 

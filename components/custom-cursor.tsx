@@ -1,15 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function CustomCursor() {
   const [visible, setVisible] = useState(false);
 
-  const cursorX = useSpring(0, { stiffness: 500, damping: 28 });
-  const cursorY = useSpring(0, { stiffness: 500, damping: 28 });
-  const trailX = useSpring(0, { stiffness: 200, damping: 20 });
-  const trailY = useSpring(0, { stiffness: 200, damping: 20 });
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const trailX = useSpring(0, { stiffness: 300, damping: 25 });
+  const trailY = useSpring(0, { stiffness: 300, damping: 25 });
 
   useEffect(() => {
     const isTouchDevice = "ontouchstart" in window;

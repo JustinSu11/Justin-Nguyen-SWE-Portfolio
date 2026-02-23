@@ -24,15 +24,15 @@ export function Contact() {
         </p>
 
         <a
-          href="mailto:justin@example.com"
+          href="mailto:justin.nguyen.swe@gmail.com"
           className="mb-10 inline-block font-[var(--font-display)] text-xl font-semibold text-foreground transition-opacity hover:opacity-70 md:text-2xl"
         >
-          justin@example.com
+          justin.nguyen.swe@gmail.com
         </a>
 
         <div className="flex items-center justify-center gap-3">
           <a
-            href="https://github.com"
+            href="https://github.com/JustinSu11"
             target="_blank"
             rel="noopener noreferrer"
             className="glass-pill flex items-center gap-2 px-5 py-2.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
