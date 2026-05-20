@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { DustParticles } from "@/components/dust-particles";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -23,6 +24,7 @@ export function Hero() {
       className="hero-gradient relative flex min-h-screen items-center justify-center overflow-hidden"
     >
       <div className="grain-overlay" />
+      <DustParticles />
       <div className="relative z-10 flex max-w-4xl flex-col items-center px-6 text-center">
         <motion.span
           custom={0}

@@ -4,7 +4,6 @@ import { Projects } from "@/components/sections/projects";
 import { Skills } from "@/components/sections/skills";
 import { Guestbook } from "@/components/sections/guestbook";
 import { Contact } from "@/components/sections/contact";
-import { ChatWidget } from "@/components/chat-widget";
 import { CustomCursor } from "@/components/custom-cursor";
 
 export default function Page() {
@@ -17,7 +16,6 @@ export default function Page() {
       <Skills />
       <Guestbook />
       <Contact />
-      <ChatWidget />
     </main>
   );
 }
