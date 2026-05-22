@@ -40,7 +40,7 @@ const rows = [
 
 function SkillChip({ name }: { name: string }) {
   return (
-    <span className="glass-pill mx-2 inline-flex shrink-0 items-center px-4 py-2 font-mono text-xs text-muted-foreground">
+    <span className="glass-pill mx-2 inline-flex shrink-0 items-center px-4 py-2 font-mono text-xs text-foreground/70">
       {name}
     </span>
   );

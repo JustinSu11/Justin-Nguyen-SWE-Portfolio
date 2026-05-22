@@ -3,15 +3,15 @@
 import { useEffect, useRef } from "react";
 
 const CONFIG = {
-  count:     90,
-  size:      2.6,
-  speed:     0.3,
-  wobble:    0.4,
-  intensity: 0.75,
-  shaftw:    300,
-  angle:     -13,
-  shaftx:    62,   // % from left
-  baseop:    0.14,
+  count:     320,
+  size:      3.2,
+  speed:     0.22,
+  wobble:    0.35,
+  intensity: 1.0,
+  shaftw:    165,   // spotlight column half-width (px)
+  angle:     0,     // straight down from top-centre
+  shaftx:    50,    // horizontal centre
+  baseop:    0.10,  // low baseline → nearly invisible in shadow, revealed by the beam
 };
 
 function rand(a: number, b: number) {
@@ -100,6 +100,46 @@ export function DustParticles() {
     function draw() {
       ctx!.clearRect(0, 0, W, H);
 
+      // ── ceiling spotlight — blurred cone + wide atmospheric bloom ────
+      const cx = W * CONFIG.shaftx / 100;
+      const srcY = -H * 0.18;   // apex above canvas — origin never visible
+
+      // Blurred triangle → soft spotlight cone with feathered edges
+      ctx!.save();
+      ctx!.filter = "blur(36px)";
+      ctx!.beginPath();
+      ctx!.moveTo(cx, srcY);
+      ctx!.lineTo(cx + H * 0.46, H + 10);
+      ctx!.lineTo(cx - H * 0.46, H + 10);
+      ctx!.closePath();
+      const cg = ctx!.createLinearGradient(cx, srcY, cx, H);
+      cg.addColorStop(0,    "rgba(255,248,210,0)");
+      cg.addColorStop(0.10, "rgba(255,246,208,0.24)");
+      cg.addColorStop(0.32, "rgba(255,240,186,0.14)");
+      cg.addColorStop(0.68, "rgba(255,228,160,0.05)");
+      cg.addColorStop(1,    "rgba(255,215,130,0)");
+      ctx!.fillStyle = cg;
+      ctx!.fill();
+      ctx!.restore();
+
+      // Wide atmospheric bloom — large radial halo around the beam
+      const bg = ctx!.createRadialGradient(cx, srcY, H * 0.05, cx, srcY, H * 1.58);
+      bg.addColorStop(0,    "rgba(255,250,220,0)");
+      bg.addColorStop(0.07, "rgba(255,246,208,0.16)");
+      bg.addColorStop(0.28, "rgba(255,236,178,0.06)");
+      bg.addColorStop(1,    "rgba(255,212,125,0)");
+      ctx!.fillStyle = bg;
+      ctx!.fillRect(0, 0, W, H);
+
+      // Dark vignette — deepens the shadow outside the cone
+      const dv = ctx!.createRadialGradient(cx, H * 0.32, H * 0.10, cx, H * 0.32, H * 0.92);
+      dv.addColorStop(0,    "rgba(0,0,0,0)");
+      dv.addColorStop(0.32, "rgba(0,0,0,0.30)");
+      dv.addColorStop(0.65, "rgba(0,0,0,0.62)");
+      dv.addColorStop(1,    "rgba(0,0,0,0.88)");
+      ctx!.fillStyle = dv;
+      ctx!.fillRect(0, 0, W, H);
+
       const spd = CONFIG.speed;
 
       for (let i = particles.length - 1; i >= 0; i--) {
@@ -120,13 +160,16 @@ export function DustParticles() {
         if (p.x > W + 15) p.x = -10;
 
         const sf    = shaftBrightness(p.x, p.y);
-        const boost = 1 + sf * CONFIG.intensity * 3.5;
-        const op    = Math.min(1, CONFIG.baseop * p.opMult * boost * lifeOp(p.life));
+        // Outside beam (sf≈0): particles at baseop → visible dark haze
+        // Inside beam  (sf≈1): boost makes them glow bright
+        const boost = 1 + sf * CONFIG.intensity * 5.5;
+        const op    = Math.min(0.82, CONFIG.baseop * p.opMult * boost * lifeOp(p.life));
 
         ctx!.save();
         ctx!.globalAlpha = op;
-        const warm = 0.4 + sf * 0.6;
-        ctx!.fillStyle = `rgb(${Math.round(232 + warm * 13)},${Math.round(225 + warm * 8)},${Math.round(215 + warm * 6)})`;
+        // Cool grey-white in shadow → warm bright in the beam
+        const warm = 0.15 + sf * 0.85;
+        ctx!.fillStyle = `rgb(${Math.round(210 + warm * 35)},${Math.round(207 + warm * 25)},${Math.round(204 + warm * 15)})`;
         ctx!.beginPath();
         ctx!.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2);
         ctx!.fill();

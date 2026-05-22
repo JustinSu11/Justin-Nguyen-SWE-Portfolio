@@ -8,19 +8,19 @@ const projects = [
     name: "BeautyByAmy",
     description:
       "A modern salon booking platform with real-time scheduling, service management, and a clean client-facing experience.",
-    tags: ["Next.js", "TypeScript", "Tailwind", "PostgreSQL"],
-    year: "2025",
-    link: "#",
-    image: "/images/beautybyamy.jpg",
+    tags: ["Next.js", "TypeScript", "Square", "Drizzle ORM"],
+    year: "2026",
+    link: "https://iibeautybyamyii.com",
+    image: "/images/beautybyamy.png",
   },
   {
     name: "Charles",
     description:
       "An AI voice assistant that understands natural language, responds in real-time, and integrates with multiple LLM providers.",
-    tags: ["Python", "FastAPI", "Whisper", "Claude API"],
-    year: "2024",
-    link: "#",
-    image: "/images/charles.jpg",
+    tags: ["Python", "FastAPI", "Whisper", "Electron"],
+    year: "2026",
+    link: "https://charles-swart-gamma.vercel.app",
+    image: "/images/charles.png",
   },
   {
     name: "ClutchCall",
@@ -29,7 +29,7 @@ const projects = [
     tags: ["Python", "Flask", "React", "Next.js"],
     year: "2025",
     link: "https://github.com/JustinSu11/clutch-call",
-    image: "/images/clutchcall.jpg",
+    image: "/images/clutchcall.png",
   },
 ];
 
@@ -84,6 +84,8 @@ export function Projects() {
             <motion.div key={project.name} variants={cardVariants}>
               <a
                 href={project.link}
+                target={project.link !== "#" ? "_blank" : undefined}
+                rel={project.link !== "#" ? "noopener noreferrer" : undefined}
                 className="glass-panel group flex h-full flex-col overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
               >
                 {/* Preview thumbnail */}

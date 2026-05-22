@@ -61,7 +61,7 @@ export function WireframeGlobe() {
       const sinRot = Math.sin(rot);
 
       // Draw wireframe circles (latitude lines)
-      ctx.strokeStyle = "rgba(245, 240, 232, 0.06)";
+      ctx.strokeStyle = "rgba(245, 240, 232, 0.45)";
       ctx.lineWidth = 0.5;
 
       for (let lat = -60; lat <= 60; lat += 30) {
@@ -88,7 +88,7 @@ export function WireframeGlobe() {
       // Draw longitude lines
       for (let lng = 0; lng < 360; lng += 30) {
         ctx.beginPath();
-        ctx.strokeStyle = "rgba(245, 240, 232, 0.06)";
+        ctx.strokeStyle = "rgba(245, 240, 232, 0.45)";
         for (let i = 0; i <= 64; i++) {
           const lat = (i / 64) * 180 - 90;
           const [x3d, y3d, z3d] = latLngToXYZ(lat, lng, r);
@@ -119,13 +119,13 @@ export function WireframeGlobe() {
           const pulse = 0.6 + 0.4 * Math.sin(Date.now() / 1000 + skill.lat);
           ctx.beginPath();
           ctx.arc(x, y, nodeR, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(245, 240, 232, ${depth * 0.6 * pulse})`;
+          ctx.fillStyle = `rgba(245, 240, 232, ${depth * 0.9 * pulse})`;
           ctx.fill();
 
           // Glow
           ctx.beginPath();
           ctx.arc(x, y, nodeR + 4, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(245, 240, 232, ${depth * 0.08 * pulse})`;
+          ctx.fillStyle = `rgba(245, 240, 232, ${depth * 0.18 * pulse})`;
           ctx.fill();
         }
       });
