@@ -1,64 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface GuestMessage {
   id: number;
   name: string;
   message: string;
-  date: string;
+  createdAt: string;
 }
 
-const initialMessages: GuestMessage[] = [
-  {
-    id: 1,
-    name: "Alex Chen",
-    message: "Incredible portfolio. The attention to detail is next level.",
-    date: "Feb 2026",
-  },
-  {
-    id: 2,
-    name: "Sarah K.",
-    message: "Love the design! Clean and elegant.",
-    date: "Jan 2026",
-  },
-  {
-    id: 3,
-    name: "Dev Friend",
-    message: "The globe animation is fire. Great work Justin!",
-    date: "Jan 2026",
-  },
-  {
-    id: 4,
-    name: "Maya R.",
-    message: "This is how portfolios should look. Bookmarked for inspiration.",
-    date: "Dec 2025",
-  },
-];
-
 export function Guestbook() {
-  const [messages, setMessages] = useState<GuestMessage[]>(initialMessages);
+  const [messages, setMessages] = useState<GuestMessage[]>([]);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    fetch("/api/guestbook")
+      .then((r) => r.json())
+      .then(setMessages)
+      .catch(() => {});
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !message.trim()) return;
 
-    const newMsg: GuestMessage = {
-      id: Date.now(),
-      name: name.trim(),
-      message: message.trim(),
-      date: new Date().toLocaleDateString("en-US", {
-        month: "short",
-        year: "numeric",
-      }),
-    };
+    await fetch("/api/guestbook", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: name.trim(), message: message.trim() }),
+    });
 
-    setMessages((prev) => [newMsg, ...prev]);
     setName("");
     setMessage("");
+    setSubmitted(true);
   };
 
   return (
@@ -87,27 +64,37 @@ export function Guestbook() {
           transition={{ duration: 0.5, delay: 0.12, ease: [0.25, 0.4, 0.25, 1] }}
           className="mx-auto mb-16 max-w-lg"
         >
-          <form onSubmit={handleSubmit} className="glass-panel p-6">
-            <input
-              type="text"
-              placeholder="Your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="mb-4 w-full border-b border-border bg-transparent pb-3 font-sans text-sm text-foreground placeholder:text-[#4a4540] focus:border-foreground/20 focus:outline-none"
-            />
-            <textarea
-              placeholder="Leave a message..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              rows={3}
-              className="mb-4 w-full resize-none border-b border-border bg-transparent pb-3 font-sans text-sm text-foreground placeholder:text-[#4a4540] focus:border-foreground/20 focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="w-full rounded-xl bg-foreground px-6 py-3 font-sans text-sm font-medium text-background transition-opacity hover:opacity-90"
-            >
-              Sign the guestbook
-            </button>
+          <form onSubmit={handleSubmit} className="glass-panel flex min-h-[212px] flex-col p-6">
+            {submitted ? (
+              <div className="flex flex-1 items-center justify-center">
+                <p className="text-center font-sans text-sm text-muted-foreground">
+                  Thanks! Your message is pending review.
+                </p>
+              </div>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="mb-4 w-full border-b border-border bg-transparent pb-3 font-sans text-sm text-foreground placeholder:text-[#4a4540] focus:border-foreground/20 focus:outline-none"
+                />
+                <textarea
+                  placeholder="Leave a message..."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={3}
+                  className="mb-4 w-full resize-none border-b border-border bg-transparent pb-3 font-sans text-sm text-foreground placeholder:text-[#4a4540] focus:border-foreground/20 focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  className="w-full rounded-xl bg-foreground px-6 py-3 font-sans text-sm font-medium text-background transition-opacity hover:opacity-90"
+                >
+                  Sign the guestbook
+                </button>
+              </>
+            )}
           </form>
         </motion.div>
 
@@ -130,7 +117,7 @@ export function Guestbook() {
                   {msg.message}
                 </p>
                 <span className="font-mono text-[0.65rem] text-muted-foreground/50">
-                  {msg.date}
+                  {new Date(msg.createdAt).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
                 </span>
               </motion.div>
             ))}

@@ -122,6 +122,20 @@ html {
   * {
     cursor: none !important;
   }
+  .use-default-cursor,
+  .use-default-cursor * {
+    cursor: auto !important;
+  }
+  .use-default-cursor button,
+  .use-default-cursor button *,
+  .use-default-cursor a,
+  .use-default-cursor a * {
+    cursor: pointer !important;
+  }
+  .use-default-cursor input,
+  .use-default-cursor textarea {
+    cursor: text !important;
+  }
 }
 
 /* Skills carousel fade */

@@ -5,10 +5,9 @@ import { Skills } from "@/components/sections/skills";
 import { Guestbook } from "@/components/sections/guestbook";
 import { Contact } from "@/components/sections/contact";
 import { CustomCursor } from "@/components/custom-cursor";
-
 export default function Page() {
   return (
-    <main className="relative min-h-screen bg-background">
+    <main className="relative min-h-screen">
       <CustomCursor />
       <Hero />
       <About />
