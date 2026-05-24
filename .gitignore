@@ -7,4 +7,15 @@ __v0_jsx-dev-runtime.ts
 node_modules/
 .next/
 .env*.local
-.DS_StoreCLAUDE.md
+.DS_Store
+CLAUDE.md
+
+# TypeScript build cache
+tsconfig.tsbuildinfo
+
+# Claude Code session data
+.claude/
+
+# Generated/temporary files
+dust-preview.html
+scripts/
