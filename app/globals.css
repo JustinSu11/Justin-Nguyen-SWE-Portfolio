@@ -124,17 +124,11 @@ section h2::after{content:"";display:block;width:92px;height:5px;margin-top:14px
 .te .d{font-family:'Playfair Display','Noto Serif',serif;font-variant-caps:small-caps;text-transform:none;font-size:14px;letter-spacing:.1em}
 
 .vp{position:absolute;display:none}
-.vp svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
-.vp svg *{vector-effect:non-scaling-stroke}
 .vp img{display:block;width:100%;height:auto}
-body[data-v=plate] .plate{display:block;left:2vw;top:12vh;width:min(68vw,1180px)}
-body[data-v=hands] .hands{display:block;left:7vw;top:16vh;width:86vw}
-.hcrop{width:100%;aspect-ratio:440/160;background:url(../assets/images/adam_cut.webp) no-repeat;background-size:409.09% auto;background-position:30.88% 43.67%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%),linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%),linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%);mask-composite:intersect}
 
 .weave{display:none;position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
 body[data-v=weave] .weave{display:block}
 body[data-v=weave] .plate{display:block;left:-12vw;top:5vh;width:min(104vw,1800px);opacity:.2}
-body[data-v=weave] .plate svg{display:none}
 body[data-v=weave] .name{margin-top:30vh!important}
 .weave img{position:absolute;max-width:none;height:auto;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 70%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 70%,transparent 100%)}
 .weave .wb{z-index:0}.weave .wf{z-index:2}
