@@ -24,6 +24,7 @@ export function createSnap(v: View, sec: Sections, tl: Timeline, fine: boolean):
   let accD = 0;
   let lastW = 0;
   let newG = true; // current wheel event starts a new gesture
+  let scrubUsed = 0; // timeline progress used by the current gesture
   let tail = false; // swallow the inertia of the gesture that started a glide until the wheel pauses
   const secs = sec.secs;
 
@@ -83,7 +84,10 @@ export function createSnap(v: View, sec: Sections, tl: Timeline, fine: boolean):
         accD = 0;
         goTo(secTarget(j0, dir), dir, true);
       } else if (isExp(tIdx) && tl.st.force && (dir > 0 ? tl.st.vp < 1 : tl.st.vp > 0)) {
-        tl.st.vp = Math.max(0, Math.min(1, tl.st.vp + (dir * dy) / 600));
+        if (newG) scrubUsed = 0;
+        const step = Math.min(dy / 600, Math.max(0, 0.34 - scrubUsed));
+        scrubUsed += step;
+        tl.st.vp = Math.max(0, Math.min(1, tl.st.vp + dir * step));
         tl.update();
       } else if (newG) {
         accD += dy;
@@ -107,15 +111,20 @@ export function createSnap(v: View, sec: Sections, tl: Timeline, fine: boolean):
     const bot = top + secs[i].offsetHeight;
     if (isExp(i) && tl.pinned()) {
       ev.preventDefault();
-      const nv = Math.max(0, Math.min(1, tl.st.vp + (dir * (ev.deltaY ? dy : 240)) / 600));
-      if (nv !== tl.st.vp) {
-        tl.st.vp = nv;
-        if (nv === 0 || nv === 1) tl.st.edge = performance.now();
+      const atEdge = dir > 0 ? tl.st.vp >= 1 : tl.st.vp <= 0;
+      if (!atEdge) {
+        // one gesture can only scrub a third of the timeline, so a hard flick can't blow through it
+        if (newG) scrubUsed = 0;
+        const step = Math.min((ev.deltaY ? dy : 240) / 600, Math.max(0, 0.34 - scrubUsed));
+        scrubUsed += step;
+        tl.st.vp = Math.max(0, Math.min(1, tl.st.vp + dir * step));
+        if (tl.st.vp === 0 || tl.st.vp === 1) tl.st.edge = performance.now();
         tl.update();
         return;
       }
+      // leaving needs a fresh gesture, so the flick that reached the end doesn't carry on past it
       const jj = i + dir;
-      if (jj < 0 || jj >= n || (!newG && tail)) return;
+      if (jj < 0 || jj >= n || !newG) return;
       tIdx = jj;
       accD = 0;
       goTo(secTarget(jj, dir), dir, false);
