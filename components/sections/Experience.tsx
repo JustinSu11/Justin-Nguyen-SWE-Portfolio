@@ -19,7 +19,7 @@ export default function Experience() {
             </div>
           ))}
         </div>
-        <a className="btn" href="#contact">Request résumé</a>
+        <a className="btn" href="/Justin_Nguyen_Resume.pdf" download>Download résumé</a>
       </div>
     </section>
   );

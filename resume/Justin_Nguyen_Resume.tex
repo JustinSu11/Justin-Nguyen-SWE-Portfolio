@@ -1,0 +1,72 @@
+% Portfolio resume. Plain, one page, ATS-friendly. Build: latexmk -pdf Justin_Nguyen_Resume.tex
+\documentclass[10.5pt,letterpaper]{article}
+\usepackage[margin=0.65in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.2em,itemsep=1pt,topsep=2pt,parsep=0pt}
+\titleformat{\section}{\large\bfseries\scshape}{}{0em}{}[\vspace{-5pt}\rule{\linewidth}{0.5pt}]
+\titlespacing*{\section}{0pt}{9pt}{5pt}
+
+\newcommand{\entry}[4]{%
+  \textbf{#1}\hfill #2\\
+  \textit{#3}\hfill \textit{#4}\par}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries Justin Nguyen}\\[3pt]
+  San Diego, CA (open to remote) \textbar{}
+  \href{mailto:justin.nguyen.swe@gmail.com}{justin.nguyen.swe@gmail.com} \textbar{}
+  \href{https://www.linkedin.com/in/justin-nguyen-softwaredev1}{linkedin.com/in/justin-nguyen-softwaredev1} \textbar{}
+  \href{https://github.com/JustinSu11}{github.com/JustinSu11}
+\end{center}
+
+\section{Education}
+\entry{University of San Diego}{San Diego, CA}{M.S., Applied Artificial Intelligence (full-time)}{In progress}
+\vspace{3pt}
+\entry{Texas A\&M University--Corpus Christi}{Corpus Christi, TX}{B.S., Computer Science (GPA 3.5, Dean's List)}{May 2026}
+\vspace{3pt}
+\textbf{Nucamp}\hfill \textit{Full-stack web and mobile development certification}
+
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0pt,label={},itemsep=2pt]
+  \item \textbf{Languages:} TypeScript, JavaScript, Python, Java, SQL
+  \item \textbf{Frontend:} React, Next.js, Tailwind CSS, shadcn/ui
+  \item \textbf{Backend:} Node.js, FastAPI, Flask, PostgreSQL, Drizzle ORM
+  \item \textbf{Data and AI:} pandas, pgmpy, statistics, LLM applications, Whisper
+  \item \textbf{Tools:} Git, Vercel, Electron, Figma
+\end{itemize}
+
+\section{Projects}
+\entry{BeautyByAmy}{\href{https://iibeautybyamyii.com}{iibeautybyamyii.com}}{Next.js, TypeScript, Square, Drizzle ORM}{\href{https://github.com/JustinSu11/BeautyByAmy}{GitHub}}
+\begin{itemize}
+  \item Built a salon booking platform with real-time scheduling and service management.
+  \item Designed a clean client booking flow and integrated Square for payments.
+\end{itemize}
+\vspace{3pt}
+\entry{Charles}{\href{https://charles-swart-gamma.vercel.app}{Live demo}}{Python, FastAPI, Whisper, Electron}{\href{https://github.com/JustinSu11/charles}{GitHub}}
+\begin{itemize}
+  \item Built an AI voice assistant that understands natural language and replies in real time.
+  \item Added support for multiple LLM providers behind one interface.
+\end{itemize}
+\vspace{3pt}
+\entry{ClutchCall}{}{Python, Flask, React, Next.js}{\href{https://github.com/JustinSu11/clutch-call}{GitHub}}
+\begin{itemize}
+  \item Built a full-stack sports analytics app that uses AI/ML to surface top players and teams.
+  \item Pulled real-time stats across NBA, NFL and soccer.
+\end{itemize}
+
+\section{Experience}
+\entry{United States Marine Corps}{}{Administrative NCOIC}{Jul 2019 -- Jul 2023}
+\begin{itemize}
+  \item Ran administrative systems under pressure for four years.
+  \item Promoted from E-2 to E-4; honorably discharged.
+\end{itemize}
+
+\end{document}
