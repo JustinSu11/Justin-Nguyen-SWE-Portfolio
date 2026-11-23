@@ -12,7 +12,7 @@ npm run build    # static site in out/
 - `app/` layout, page, global CSS
 - `components/` Backdrop, Nav, Accents, and one component per section
 - `data/` typed content (projects, experience, stack, site, accents)
-- `lib/scene.js` canvas orb, scroll snapping, hands, accent layout (untyped, to be split)
+- `lib/scene/` typed scene engine: sphere, neural web, compass, section nodes, snapping, timeline, accents, hands weave
 - `public/assets/images/` artwork
 
 Deploy: import the repo in Vercel (framework auto-detected).
