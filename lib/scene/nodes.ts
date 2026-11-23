@@ -8,7 +8,7 @@ const RAW = [
   { id: 'about', g: 'γ', lon: 55, lat: 20, t: 'ABOUT', s: 'story & background' },
   { id: 'works', g: 'ε', lon: 110, lat: -18, t: 'WORKS', s: 'projects & case studies' },
   { id: 'stack', g: 'τ', lon: 165, lat: 22, t: 'STACK', s: 'tools & skills' },
-  { id: 'experience', g: 'β', lon: 220, lat: -20, t: 'RÉSUMÉ', s: 'experience & timeline' },
+  { id: 'experience', g: 'β', lon: 220, lat: -20, t: 'EXPERIENCE', s: 'résumé & timeline' },
   { id: 'contact', g: 'λ', lon: 275, lat: 14, t: 'CONTACT', s: 'say hello' },
 ];
 
