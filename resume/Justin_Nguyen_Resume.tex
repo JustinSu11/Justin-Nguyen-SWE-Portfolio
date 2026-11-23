@@ -1,77 +1,193 @@
-% Portfolio resume. One page, plain, ATS-friendly. Build: latexmk -pdf Justin_Nguyen_Resume.tex
-\documentclass[11pt,letterpaper]{article}
-\usepackage[top=0.55in,bottom=0.5in,left=0.65in,right=0.65in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[hidelinks]{hyperref}
-\usepackage{enumitem}
+%-------------------------
+% Justin Nguyen — Resume (portfolio copy of the master: public contact details only)
+% Based on the popular "Jake's Resume" LaTeX template (deedy-resume style),
+% widely used because it's clean, ATS-friendly, and compiles with pdflatex only.
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
 \usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
 
-\pagestyle{empty}
-\setlength{\parindent}{0pt}
-\linespread{1.04}
-\setlist[itemize]{leftmargin=1.1em,itemsep=1.5pt,topsep=2pt,parsep=0pt}
-\titleformat{\section}{\normalsize\bfseries\scshape}{}{0em}{}[\vspace{-2pt}\titlerule]
-\titlespacing*{\section}{0pt}{12pt}{5pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 
-% \entry{title}{right}{subtitle}{right}
-\newcommand{\entry}[4]{%
-  \textbf{#1}\hfill #2\\[-1pt]
-  \textit{#3}\hfill \textit{#4}\par\vspace{1pt}}
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.6in}
+\addtolength{\textwidth}{1.2in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure PDF is machine readable / ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
+%----------HEADING----------
 \begin{center}
-  {\LARGE\bfseries Justin Nguyen}\\[4pt]
-  Software Engineer \textbar{} Full-stack and Applied AI\\[2pt]
-  San Diego, CA (open to remote) \textbar{}
-  \href{mailto:justin.nguyen.swe@gmail.com}{justin.nguyen.swe@gmail.com}\\[1pt]
-  \href{https://www.linkedin.com/in/justin-nguyen-softwaredev1}{linkedin.com/in/justin-nguyen-softwaredev1} \textbar{}
-  \href{https://github.com/JustinSu11}{github.com/JustinSu11}
+    \textbf{\Huge \scshape Justin Nguyen} \\ \vspace{1pt}
+    \small
+    \href{mailto:justin.nguyen.swe@gmail.com}{justin.nguyen.swe@gmail.com} $|$
+    \href{https://www.linkedin.com/in/justin-nguyen-softwaredev1}{linkedin.com/in/justin-nguyen-softwaredev1} $|$
+    \href{https://github.com/JustinSu11}{github.com/JustinSu11}
 \end{center}
 
+
+%-----------SUMMARY-----------
+\section{Summary}
+\small{Software Engineer and U.S. Marine Corps veteran with full-stack development experience in React, Next.js, Python, TypeScript, and SQL. Built and shipped AI-powered desktop and web applications integrating LLMs, voice pipelines, and real-time APIs. Skilled in RESTful API design, database architecture, and Agile delivery. Proven leader with a track record of managing teams, driving projects to completion, and maintaining high standards under pressure.}
+
+
+%-----------SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Programming Languages}{: Java, C/C++, Python, JavaScript, TypeScript, C\#, HTML/CSS, SQL} \\
+     \textbf{Frameworks \& Libraries}{: React, Next.js, Node.js, TailwindCSS, Flask, Java Swing, FastAPI, Tkinter} \\
+     \textbf{Technologies/Tools}{: Git/GitHub, REST APIs, SQLite, PostgreSQL, Docker, OpenAI Whisper, OpenRouter, Postman, CI/CD, Figma} \\
+     \textbf{Leadership Skills}{: Agile/Scrum, Sprint Planning, Team Collaboration, Conflict Resolution, Time Management}
+    }}
+ \end{itemize}
+
+
+%-----------EXPERIENCE-----------
+\section{Professional Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {United States Marine Corps}{Jul 2019 -- Jul 2023}
+      {Administrative Clerk}{}
+    \resumeItemListStart
+        \resumeItem{Led 4-person team as Team Manager, setting priorities, delegating tasks, resolving conflicts, and enforcing accountability to consistently meet mission-critical deadlines.}
+        \resumeItem{Trained and mentored 2 junior Marines through structured feedback cycles, performance evaluations, and skill development programs, resulting in 100\% promotion-readiness rate.}
+        \resumeItem{Managed high-volume administrative workflows processing 200+ documents monthly with meticulous attention to detail and zero error tolerance in a compliance-sensitive environment.}
+    \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS----------
+\section{Related Experience}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{BeautyByAmy} $|$ \emph{Freelance Project} $|$ React, Next.js, TailwindCSS, GitHub}{Dec 2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{Developed a mobile-first booking site for a cosmetology business using a React/Next.js frontend with TailwindCSS, gathering client requirements and translating business needs into user flows and technical tasks.}
+        \resumeItem{Designed and integrated RESTful API workflows with the Square Bookings API for appointment scheduling, handling authentication, error responses, and storing customer consent forms linked to Square account identifiers.}
+        \resumeItem{Implemented input validation and edge-case testing for booking forms, ensuring data integrity and preventing invalid submissions through client-side and server-side validation logic.}
+        \resumeItem{Managed version control using Git/GitHub with a feature-branch workflow, pull requests, and documented commit history for reliable iteration and rollback capability.}
+      \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Charles} $|$ \emph{Personal Project} $|$ Python, FastAPI, SQLite, Electron, JavaScript, OpenRouter}{Feb 2026 -- May 2026}
+      \resumeItemListStart
+        \resumeItem{Architected a dual-interface AI desktop assistant using Electron and Python, delivering an always-on voice pipeline and a built-in chat UI within a single native application, sharing a common conversation history.}
+        \resumeItem{Designed a local-first FastAPI backend with SQLite persistence via SQLAlchemy.}
+        \resumeItem{Built a keyword-based skill routing system that intercepts user queries, activates relevant data pipelines, and injects live external context into LLM prompts before inference, integrating the VirusTotal API for file hash and URL security scanning and the NVD REST API for real-time CVE lookups.}
+        \resumeItem{Implemented a local voice processing pipeline using OpenWakeWord for always-on wake word detection, OpenAI Whisper for on-device speech-to-text transcription, and Microsoft Edge TTS for speech synthesis, with no cloud audio processing.}
+        \resumeItem{Developed an Electron-based desktop launcher with a first-run setup wizard that automates Python dependency installation and API key configuration, reducing user setup to a single application launch.}
+      \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{ClutchCall} $|$ \emph{Software Engineering} $|$ React, Next.js, TailwindCSS, Figma, Git, GitHub}{Sep 2025 -- Dec 2025}
+      \resumeItemListStart
+        \resumeItem{Co-developed a full-stack sports analytics web application with a Python/Flask backend and React/Next.js frontend, retrieving NBA/NFL/soccer data and surfacing AI/ML-powered player and team recommendations.}
+        \resumeItem{Led a 6-person team as project manager, conducting sprint planning, daily stand-ups, roadmap definition, and ensuring on-time delivery with comprehensive testing documentation.}
+        \resumeItem{Built RESTful API endpoints in Flask for sports data retrieval, implementing proper HTTP methods (GET/POST), JSON serialization, error handling, and response formatting for frontend consumption.}
+        \resumeItem{Developed responsive, accessible UI components in React with TailwindCSS, including filterable data views, dashboard widgets, and a landing page optimized for mobile and desktop experiences.}
+        \resumeItem{Leveraged Figma's real-time collaboration tools to co-create and refine a shared UI/UX design vision with the team.}
+      \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Pick It Up} $|$ \emph{Object-Oriented Programming} $|$ Java, SQLite, Git, GitHub}{Jan 2025 -- May 2025}
+      \resumeItemListStart
+        \resumeItem{Implemented a Java Swing desktop productivity suite combining note-taking, an AI chat assistant, a to-do list, a calendar, and a timer into one application with persistent SQLite database storage.}
+        \resumeItem{Designed a normalized relational database schema with SQLite, implementing foreign keys, indexes for query optimization, and SQL transactions for data consistency across journals, tasks, and calendar entries.}
+        \resumeItem{Built a data access layer using the DAO pattern for database operations, writing SQL queries with joins, WHERE clauses, and parameterized statements to prevent SQL injection vulnerabilities.}
+        \resumeItem{Developed an interactive to-do list manager with date validation logic, overdue-task highlighting using comparison algorithms, and CRUD operations with persistent storage.}
+        \resumeItem{Collaborated in Agile sprints as technical manager, coordinating deliverables, conducting code reviews, and presenting the final application demo in April 2025.}
+      \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+
+%-----------EDUCATION-----------
 \section{Education}
-\entry{University of San Diego}{San Diego, CA}{M.S., Applied Artificial Intelligence (full-time)}{Expected Dec 2027}
-\vspace{4pt}
-\entry{Texas A\&M University--Corpus Christi}{Corpus Christi, TX}{B.S., Computer Science (GPA 3.5, Dean's List)}{May 2026}
-\vspace{4pt}
-\textbf{Nucamp} \textbar{} \textit{Full-stack web and mobile development certification}
-
-\section{Projects}
-\entry{BeautyByAmy}{\href{https://iibeautybyamyii.com}{iibeautybyamyii.com}}{Next.js, TypeScript, Drizzle ORM, PostgreSQL, Square}{\href{https://github.com/JustinSu11/BeautyByAmy}{GitHub}}
-\begin{itemize}
-  \item Built and shipped a booking platform for a working salon: service catalog, real-time scheduling, and client booking flow.
-  \item Integrated Square for payments and used Drizzle ORM for typed database access.
-  \item Handled the client handoff end to end: Vercel project transfer, Neon database migration, and domain transfer.
-\end{itemize}
-\vspace{4pt}
-\entry{Charles: AI voice assistant}{\href{https://charles-swart-gamma.vercel.app}{Live demo}}{Python, FastAPI, Whisper, Electron}{\href{https://github.com/JustinSu11/charles}{GitHub}}
-\begin{itemize}
-  \item Built a voice assistant that transcribes speech with Whisper, understands natural language, and replies in real time.
-  \item Put multiple LLM providers behind one interface so models can be swapped without touching the rest of the app.
-  \item Wrapped a FastAPI backend in an Electron desktop client.
-\end{itemize}
-\vspace{4pt}
-\entry{ClutchCall}{}{Python, Flask, React, Next.js, Tailwind CSS}{\href{https://github.com/JustinSu11/clutch-call}{GitHub}}
-\begin{itemize}
-  \item Project manager and lead front-end developer on a team of about six building a sports prediction web app for a Software Engineering course.
-  \item Used ML to surface top players and teams from live NBA, NFL and soccer stats.
-\end{itemize}
-
-\section{Technical Skills}
-\begin{itemize}[leftmargin=0pt,label={},itemsep=2pt]
-  \item \textbf{Languages:} TypeScript, JavaScript, Python, Java, SQL
-  \item \textbf{Frontend:} React, Next.js, Tailwind CSS, shadcn/ui
-  \item \textbf{Backend:} Node.js, FastAPI, Flask, PostgreSQL, Drizzle ORM
-  \item \textbf{Data and AI:} pandas, pgmpy, statistics, LLM applications, Whisper
-  \item \textbf{Tools:} Git, Vercel, Electron, Figma
-\end{itemize}
-
-\section{Experience}
-\entry{United States Marine Corps}{}{Administrative NCOIC}{Jul 2019 -- Jul 2023}
-\begin{itemize}
-  \item Ran a unit's administrative systems for four years.
-  \item Promoted from E-2 to E-4; honorably discharged.
-\end{itemize}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+        {University of San Diego}{Aug 2026 -- December 2027}
+        {Masters of Science in Applied Artificial Intelligence}{}
+    \resumeItemListStart
+        \resumeItem{\textbf{Relevant Coursework:} Applied Probability and Statistics for AI, Introduction to Artificial Intelligence and Machine Learning, Agentic AI Systems, Neural Networks and Deep Learning, Natural Language Processing and GenAI, Applied Computer Vision for AI, Large Language Model Engineering, Applied AI Ethics, Machine Learning Operations (MLOps), Directed AI Research Extension, Capstone Project, Practicum in Applied Artificial Intelligence}
+    \resumeItemListEnd
+    \resumeSubheading
+      {Texas A\&M University -- Corpus Christi}{May 2026}
+      {Bachelor of Science in Computer Science, GPA 3.5}{}
+    \resumeItemListStart
+      \resumeItem{\textbf{Relevant Coursework:} Data Structures \& Algorithms, Operating Systems, Database Systems, Object-Oriented Programming, Software Engineering, Computer Networks, Computer Architecture, Discrete Mathematics, Cyber Security, Statistical Modeling \& Data Analysis, Mobile Programming, Internet Programming, Artificial Intelligence, Systems Programming, Senior Capstone Project}
+      \resumeItem{\textbf{Honors and Activities:} Dean's List (2023 -- 2024, 2025)}
+    \resumeItemListEnd
+  \resumeSubHeadingListEnd
 
 \end{document}
