@@ -24,7 +24,8 @@ export function createSnap(v: View, sec: Sections, tl: Timeline, fine: boolean):
   let accD = 0;
   let lastW = 0;
   let newG = true; // current wheel event starts a new gesture
-  let scrubUsed = 0; // timeline progress used by the current gesture
+  let scrubBudget = 0.34; // timeline progress available right now; refills with time, so scrolling never stalls
+  let scrubAt = 0;
   let tail = false; // swallow the inertia of the gesture that started a glide until the wheel pauses
   const secs = sec.secs;
 
@@ -110,10 +111,13 @@ export function createSnap(v: View, sec: Sections, tl: Timeline, fine: boolean):
       const atEdge = dir > 0 ? tl.st.vp >= 1 : tl.st.vp <= 0;
       if (!atEdge) {
         if (!newG && tail) return; // inertia of the gesture that brought us here
-        // one gesture can only scrub a third of the timeline, so a hard flick can't blow through it
-        if (newG) scrubUsed = 0;
-        const step = Math.min((ev.deltaY ? dy : 240) / 600, Math.max(0, 0.34 - scrubUsed));
-        scrubUsed += step;
+        // the bar can move at most ~0.8 timelines/second, so a hard flick can't blow through it
+        // but steady scrolling is never cut off mid-way
+        const t = performance.now();
+        scrubBudget = Math.min(0.34, scrubBudget + (t - scrubAt) * 0.0008);
+        scrubAt = t;
+        const step = Math.min((ev.deltaY ? dy : 240) / 600, scrubBudget);
+        scrubBudget -= step;
         tl.st.vp = Math.max(0, Math.min(1, tl.st.vp + dir * step));
         if (tl.st.vp === 0 || tl.st.vp === 1) tl.st.edge = performance.now();
         tl.update();
