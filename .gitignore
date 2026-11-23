@@ -1,0 +1,24 @@
+# dependencies / build output
+node_modules/
+.next/
+.vercel/
+dist/
+
+# secrets and local env
+.env
+.env.*
+!.env.example
+
+# tooling caches
+*.tsbuildinfo
+.claude/
+
+# editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# scratch
+scripts/
+dust-preview.html
