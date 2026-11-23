@@ -83,12 +83,8 @@ export function createSnap(v: View, sec: Sections, tl: Timeline, fine: boolean):
         tIdx = j0;
         accD = 0;
         goTo(secTarget(j0, dir), dir, true);
-      } else if (isExp(tIdx) && tl.st.force && (dir > 0 ? tl.st.vp < 1 : tl.st.vp > 0)) {
-        if (newG) scrubUsed = 0;
-        const step = Math.min(dy / 600, Math.max(0, 0.34 - scrubUsed));
-        scrubUsed += step;
-        tl.st.vp = Math.max(0, Math.min(1, tl.st.vp + dir * step));
-        tl.update();
+      } else if (isExp(tIdx)) {
+        // gliding into Experience: ignore input until we land, same in both directions
       } else if (newG) {
         accD += dy;
         if (accD >= 60) {
@@ -113,6 +109,7 @@ export function createSnap(v: View, sec: Sections, tl: Timeline, fine: boolean):
       ev.preventDefault();
       const atEdge = dir > 0 ? tl.st.vp >= 1 : tl.st.vp <= 0;
       if (!atEdge) {
+        if (!newG && tail) return; // inertia of the gesture that brought us here
         // one gesture can only scrub a third of the timeline, so a hard flick can't blow through it
         if (newG) scrubUsed = 0;
         const step = Math.min((ev.deltaY ? dy : 240) / 600, Math.max(0, 0.34 - scrubUsed));
