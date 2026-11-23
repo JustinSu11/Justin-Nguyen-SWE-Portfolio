@@ -121,7 +121,8 @@ export function createSnap(v: View, sec: Sections, tl: Timeline, fine: boolean):
       goTo(secTarget(jj, dir), dir, false);
       return;
     }
-    if (dir > 0 && bot > scrollY + v.H + 10) return; // still more of this section to read
+    // still more of this section to read (Home is exempt: its extra height is only padding)
+    if (dir > 0 && i !== 0 && bot > scrollY + v.H + 10) return;
     if (dir < 0 && top < scrollY - 10) return;
     const j = i + dir;
     if (j < 0 || j >= n) return;
