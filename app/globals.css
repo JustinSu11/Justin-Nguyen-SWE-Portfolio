@@ -143,5 +143,5 @@ body[data-v=weave] .name{margin-top:30vh!important}
 @media(min-width:1500px) and (min-height:1180px){.col,.roles{zoom:1.2}}
 @media(min-width:1500px) and (min-height:1380px){.col,.roles{zoom:1.4}}
 @media(min-width:1500px) and (min-height:1700px){.col,.roles{zoom:1.75}}
-/* ultrawide: the fresco plate sits further right and larger (1800px cap would leave it small and hugging the left edge) */
-@media(min-width:1800px) and (min-aspect-ratio:2/1){body[data-v=weave] .plate{left:10vw;top:5vh;width:min(86vw,3400px)}}
+/* ultrawide: the fresco plate keeps the same height-proportion as on 1920x1080 (1800px wide at 1080px tall) and sits further right */
+@media(min-width:1800px) and (min-aspect-ratio:2/1){body[data-v=weave] .plate{left:10vw;top:5vh;width:166.7vh}}
