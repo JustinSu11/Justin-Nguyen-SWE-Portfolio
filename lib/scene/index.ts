@@ -66,13 +66,29 @@ export function startScene(): Disposer {
   };
 
   /** the scroll ruler down the left edge */
-  const rulerUpdate = () => {
+  let rTarget = 0;
+  let rShown = 0;
+  const rulerPaint = () => {
     if (!rfill || !rmark) return;
+    rfill.style.height = rShown + 'px';
+    rmark.style.top = rShown + 'px';
+  };
+  const rulerUpdate = (snapNow = false) => {
     const max = document.documentElement.scrollHeight - innerHeight;
     const p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
-    const h = Math.round(p * innerHeight);
-    rfill.style.height = h + 'px';
-    rmark.style.top = h + 'px';
+    rTarget = p * innerHeight;
+    if (snapNow || reduced) {
+      rShown = rTarget;
+      rulerPaint();
+    }
+  };
+  /** ease the ruler toward the scroll position so wheel steps don't jerk it */
+  const rulerTick = (dt: number) => {
+    if (rShown === rTarget) return;
+    const k = 1 - Math.pow(1 - 0.16, Math.min(dt, 50) / 16.7);
+    rShown += (rTarget - rShown) * k;
+    if (Math.abs(rTarget - rShown) < 0.3) rShown = rTarget;
+    rulerPaint();
   };
 
   const relayout = () => {
@@ -82,8 +98,13 @@ export function startScene(): Disposer {
     layoutAccents();
   };
 
+  let lastTick = 0;
   const frame = (now: number) => {
     if (stopped) return;
+    const dt = lastTick ? now - lastTick : 16.7;
+    lastTick = now;
+    tl.tick(dt);
+    rulerTick(dt);
     const prog = sec.progress;
     // idle: nothing is moving, so redraw at ~30fps at most
     if (!reduced && Math.abs(prog.target - prog.f) < 0.002 && !rip.on && !snap.snapping && now - ptr.lastMove > 600 && now - lastDraw < 31) {
@@ -197,7 +218,7 @@ export function startScene(): Disposer {
   sec.computeTarget();
   sec.progress.f = sec.progress.target;
   tl.update();
-  rulerUpdate();
+  rulerUpdate(true);
   document.fonts?.ready.then(() => {
     if (!stopped) relayout();
   });

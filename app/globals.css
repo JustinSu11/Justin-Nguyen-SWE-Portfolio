@@ -58,7 +58,7 @@ p{font-size:16px;line-height:1.62;color:#1E1E1E;margin-bottom:14px;max-width:46c
 .tl{position:relative;margin:10px 0 0 6px;padding-left:34px}
 .tl .rail{position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--ink);opacity:.9}
 .tl .rail:before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background-image:repeating-linear-gradient(180deg,var(--ink) 0 1px,transparent 1px 12px)}
-.tl .prog{position:absolute;left:-1px;top:0;width:3px;height:0;background:var(--red)}
+.tl .prog{position:absolute;left:-1px;top:0;width:3px;height:100%;background:var(--red);transform:scaleY(0);transform-origin:top;will-change:transform}
 .te{position:relative;padding-bottom:34px}
 .te:before{content:"";position:absolute;left:-39px;top:5px;width:11px;height:11px;background:var(--paper);border:1.5px solid var(--ink)}
 .te.on:before{background:var(--red);border-color:var(--red)}
