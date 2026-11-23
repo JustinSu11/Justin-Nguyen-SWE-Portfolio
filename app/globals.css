@@ -137,8 +137,9 @@ body[data-v=weave] .name{margin-top:30vh!important}
 
 /* short laptop windows: the motto bar would sit on the first lines */
 @media(min-width:821px) and (max-height:760px){.col-blk{display:none}}
-/* large and ultrawide screens: scale content up so it doesn't float in the canvas */
-@media(min-width:1800px){.col,.roles{zoom:1.25}.name{font-size:clamp(130px,min(19vw,27vh),380px)}}
-@media(min-width:2300px){.col,.roles{zoom:1.6}.name{font-size:clamp(130px,min(19vw,27vh),480px)}}
-@media(min-width:3000px){.col,.roles{zoom:2}.name{font-size:clamp(130px,min(19vw,27vh),600px)}}
-@media(min-width:1800px){body[data-v=weave] .name{margin-top:16vh!important}}
+/* tall screens (1440p ultrawides, 4K): scale content by viewport height, not width,
+   so a 3440x1440 monitor isn't scaled like a 3440-wide square */
+@media(min-width:1800px){.name{font-size:clamp(130px,min(19vw,27vh),600px)}body[data-v=weave] .name{margin-top:16vh!important}}
+@media(min-width:1500px) and (min-height:1180px){.col,.roles{zoom:1.2}}
+@media(min-width:1500px) and (min-height:1380px){.col,.roles{zoom:1.4}}
+@media(min-width:1500px) and (min-height:1700px){.col,.roles{zoom:1.75}}
