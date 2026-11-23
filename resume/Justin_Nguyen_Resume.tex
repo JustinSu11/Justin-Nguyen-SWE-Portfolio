@@ -1,6 +1,6 @@
-% Portfolio resume. Plain, one page, ATS-friendly. Build: latexmk -pdf Justin_Nguyen_Resume.tex
-\documentclass[10.5pt,letterpaper]{article}
-\usepackage[margin=0.65in]{geometry}
+% Portfolio resume. One page, plain, ATS-friendly. Build: latexmk -pdf Justin_Nguyen_Resume.tex
+\documentclass[11pt,letterpaper]{article}
+\usepackage[top=0.55in,bottom=0.5in,left=0.65in,right=0.65in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[hidelinks]{hyperref}
@@ -9,30 +9,54 @@
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlist[itemize]{leftmargin=1.2em,itemsep=1pt,topsep=2pt,parsep=0pt}
-\titleformat{\section}{\large\bfseries\scshape}{}{0em}{}[\vspace{-5pt}\rule{\linewidth}{0.5pt}]
-\titlespacing*{\section}{0pt}{9pt}{5pt}
+\linespread{1.04}
+\setlist[itemize]{leftmargin=1.1em,itemsep=1.5pt,topsep=2pt,parsep=0pt}
+\titleformat{\section}{\normalsize\bfseries\scshape}{}{0em}{}[\vspace{-2pt}\titlerule]
+\titlespacing*{\section}{0pt}{12pt}{5pt}
 
+% \entry{title}{right}{subtitle}{right}
 \newcommand{\entry}[4]{%
-  \textbf{#1}\hfill #2\\
-  \textit{#3}\hfill \textit{#4}\par}
+  \textbf{#1}\hfill #2\\[-1pt]
+  \textit{#3}\hfill \textit{#4}\par\vspace{1pt}}
 
 \begin{document}
 
 \begin{center}
-  {\LARGE\bfseries Justin Nguyen}\\[3pt]
+  {\LARGE\bfseries Justin Nguyen}\\[4pt]
+  Software Engineer \textbar{} Full-stack and Applied AI\\[2pt]
   San Diego, CA (open to remote) \textbar{}
-  \href{mailto:justin.nguyen.swe@gmail.com}{justin.nguyen.swe@gmail.com} \textbar{}
+  \href{mailto:justin.nguyen.swe@gmail.com}{justin.nguyen.swe@gmail.com}\\[1pt]
   \href{https://www.linkedin.com/in/justin-nguyen-softwaredev1}{linkedin.com/in/justin-nguyen-softwaredev1} \textbar{}
   \href{https://github.com/JustinSu11}{github.com/JustinSu11}
 \end{center}
 
 \section{Education}
-\entry{University of San Diego}{San Diego, CA}{M.S., Applied Artificial Intelligence (full-time)}{In progress}
-\vspace{3pt}
+\entry{University of San Diego}{San Diego, CA}{M.S., Applied Artificial Intelligence (full-time)}{Expected Dec 2027}
+\vspace{4pt}
 \entry{Texas A\&M University--Corpus Christi}{Corpus Christi, TX}{B.S., Computer Science (GPA 3.5, Dean's List)}{May 2026}
-\vspace{3pt}
-\textbf{Nucamp}\hfill \textit{Full-stack web and mobile development certification}
+\vspace{4pt}
+\textbf{Nucamp} \textbar{} \textit{Full-stack web and mobile development certification}
+
+\section{Projects}
+\entry{BeautyByAmy}{\href{https://iibeautybyamyii.com}{iibeautybyamyii.com}}{Next.js, TypeScript, Drizzle ORM, PostgreSQL, Square}{\href{https://github.com/JustinSu11/BeautyByAmy}{GitHub}}
+\begin{itemize}
+  \item Built and shipped a booking platform for a working salon: service catalog, real-time scheduling, and client booking flow.
+  \item Integrated Square for payments and used Drizzle ORM for typed database access.
+  \item Handled the client handoff end to end: Vercel project transfer, Neon database migration, and domain transfer.
+\end{itemize}
+\vspace{4pt}
+\entry{Charles: AI voice assistant}{\href{https://charles-swart-gamma.vercel.app}{Live demo}}{Python, FastAPI, Whisper, Electron}{\href{https://github.com/JustinSu11/charles}{GitHub}}
+\begin{itemize}
+  \item Built a voice assistant that transcribes speech with Whisper, understands natural language, and replies in real time.
+  \item Put multiple LLM providers behind one interface so models can be swapped without touching the rest of the app.
+  \item Wrapped a FastAPI backend in an Electron desktop client.
+\end{itemize}
+\vspace{4pt}
+\entry{ClutchCall}{}{Python, Flask, React, Next.js, Tailwind CSS}{\href{https://github.com/JustinSu11/clutch-call}{GitHub}}
+\begin{itemize}
+  \item Project manager and lead front-end developer on a team of about six building a sports prediction web app for a Software Engineering course.
+  \item Used ML to surface top players and teams from live NBA, NFL and soccer stats.
+\end{itemize}
 
 \section{Technical Skills}
 \begin{itemize}[leftmargin=0pt,label={},itemsep=2pt]
@@ -43,29 +67,10 @@
   \item \textbf{Tools:} Git, Vercel, Electron, Figma
 \end{itemize}
 
-\section{Projects}
-\entry{BeautyByAmy}{\href{https://iibeautybyamyii.com}{iibeautybyamyii.com}}{Next.js, TypeScript, Square, Drizzle ORM}{\href{https://github.com/JustinSu11/BeautyByAmy}{GitHub}}
-\begin{itemize}
-  \item Built a salon booking platform with real-time scheduling and service management.
-  \item Designed a clean client booking flow and integrated Square for payments.
-\end{itemize}
-\vspace{3pt}
-\entry{Charles}{\href{https://charles-swart-gamma.vercel.app}{Live demo}}{Python, FastAPI, Whisper, Electron}{\href{https://github.com/JustinSu11/charles}{GitHub}}
-\begin{itemize}
-  \item Built an AI voice assistant that understands natural language and replies in real time.
-  \item Added support for multiple LLM providers behind one interface.
-\end{itemize}
-\vspace{3pt}
-\entry{ClutchCall}{}{Python, Flask, React, Next.js}{\href{https://github.com/JustinSu11/clutch-call}{GitHub}}
-\begin{itemize}
-  \item Built a full-stack sports analytics app that uses AI/ML to surface top players and teams.
-  \item Pulled real-time stats across NBA, NFL and soccer.
-\end{itemize}
-
 \section{Experience}
 \entry{United States Marine Corps}{}{Administrative NCOIC}{Jul 2019 -- Jul 2023}
 \begin{itemize}
-  \item Ran administrative systems under pressure for four years.
+  \item Ran a unit's administrative systems for four years.
   \item Promoted from E-2 to E-4; honorably discharged.
 \end{itemize}
 
